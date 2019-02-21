@@ -1,0 +1,69 @@
+<ui:composition template="template.xhtml"
+               xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+        <ui:define name="title">
+		<h:outputText value="Item Pedido" />
+	</ui:define>
+    
+    <ui:define name="principal">
+        <h1>Item pedido</h1>
+        
+        
+        <h:form id="formItem">
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Produto"/>
+                <p:selectOneMenu value="#{ItemPedidoMB.produtoEscolhido}" converter="converterProduto" style="width:100%">
+                    <f:selectItems value="#{ItemPedidoMB.produtos}" var="aux"
+                                   itemValue="#{aux}" itemLabel="#{aux.nome}"/>
+                </p:selectOneMenu>
+                <p:outputLabel value="Quantidade" />
+                <p:inputText value="#{ItemPedidoMB.itemP.quantidade}"/>
+                <p:outputLabel value="Valor Pedido"/>
+                <p:outputLabel value="#{ItemPedidoMB.total}"/>
+            </p:panelGrid>
+            
+            
+            <p:commandButton value="Adicionar ao Carrinho"
+                             action="#{ItemPedidoMB.salvar}"
+                             update="formItem"
+                             />
+            <p:commandButton value="Finalizar Pedido"
+                             action="#{ItemPedidoMB.finalizar}"
+                             update="formItem"
+                             />
+            
+            <p:growl id="msgs" showDetail="true"/>
+            <p:dataTable id="itens"
+                         var="c" value="#{ItemPedidoMB.itens}"
+                         rowKey="#{c.numero}"
+                         rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         editable="true"
+                         >
+                
+                <p:column filterBy="#{c.produto.codigo}" headerText = "Codigo" filterMatchMode="contains">
+                    <p:outputLabel value="#{c.produto.codigo}"/>
+                </p:column>
+                <p:column filterBy="#{c.produto.nome}" headerText = "Nome" filterMatchMode="contains">
+                    <p:outputLabel value="#{c.produto.nome}"/>
+                </p:column>
+                <p:column filterBy="#{c.produto.preco}" headerText = "Valor" filterMatchMode="contains">
+                    <p:outputLabel value="#{c.produto.preco}"/>
+                </p:column>
+                <p:column headerText="Quantidade">
+                    <p:outputLabel value="#{c.quantidade}"/>
+                </p:column>
+                <p:column filterBy="#{c.produto.categoria.descricao}" headerText = "Categoria" filterMatchMode="contains">
+                    <p:outputLabel value="#{c.produto.categoria.descricao}"/>
+                </p:column>
+            </p:dataTable>
+                
+        </h:form>
+    </ui:define>
+</ui:composition>
