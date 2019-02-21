@@ -13,8 +13,7 @@ import java.util.ArrayList;
  */
 public class Testao {
     private ArrayList<String> listona = new ArrayList();
-    private int atributosodezoas;
-    
+
     public ArrayList<String> getListona() {
         return listona;
     }
