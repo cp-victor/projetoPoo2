@@ -10,7 +10,6 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import modelo.Cliente;
-import modelo.ItemPedido;
 import modelo.Pedido;
 import modelo.Produto;
 import servico.ClienteService;
@@ -28,38 +27,39 @@ public class ItemPedidoMB {
     private ItemPedidoService itemService = new ItemPedidoService();
     private ProdutoService produtoService = new ProdutoService();
     private ClienteService clienteService = new ClienteService();
-    private ArrayList<Cliente> cli;
+    private List<Cliente> cli;
     private Cliente clis;
     private Pedido ped;
     private Produto produtoEscolhido;
-    private ItemPedido selectedItem;
-    private ItemPedido itemP = new ItemPedido();
+    //private ItemPedido selectedItem;
+    private Pedido itemP = new Pedido();
     private double total;
     
     public void salvar(){
         if(produtoEscolhido != null){
-                itemP.setProduto(produtoEscolhido);
+                itemP.addProduto(produtoEscolhido);
             }
-            this.total += produtoEscolhido.getPreco() * itemP.getQuantidade();
+            //this.total += produtoEscolhido.getPreco() * itemP.getQuantidade();
             
             itemService.salvar(itemP);
-            itemP = new ItemPedido();
+            itemP = new Pedido();
             produtoEscolhido=null;
     }
 
     public String finalizar(){
-        ped = new Pedido();
-        
-        cli = clienteService.getClientes();
-        ped.setNumero(Dados.getContPed(1));
-        ped.setItens(itemService.getItem());
-        ped.setCliente(Dados.getLISTA_CLIENTES().get(Dados.getCliFinal()));
-        clis = ped.getCliente();
-        clis.addPedido(ped);
-        Dados.limpaLista();
-        itemService = new ItemPedidoService();
-        
-        return "pedidok.xhtml";
+//        ped = new Pedido();
+//        
+//        cli = clienteService.getClientes();
+//        ped.setNumero(Dados.getContPed(1));
+//        ped.setItens(itemService.getItem());
+//        ped.setCliente(Dados.getLISTA_CLIENTES().get(Dados.getCliFinal()));
+//        clis = ped.getCliente();
+//        clis.addPedido(ped);
+//        Dados.limpaLista();
+//        itemService = new ItemPedidoService();
+//        
+//        return "pedidok.xhtml";
+        return null;
     }
 
     public double getTotal() {
@@ -70,9 +70,9 @@ public class ItemPedidoMB {
         return itemService;
     }
     
-    public ArrayList<ItemPedido> getItens(){
-        return itemService.getItem();
-    }
+//    public ArrayList<ItemPedido> getItens(){
+//        return null;//itemService.getItem();
+//    }
 
     public void setItemService(ItemPedidoService itemService) {
         this.itemService = itemService;
@@ -98,21 +98,21 @@ public class ItemPedidoMB {
         this.produtoEscolhido = produtoEscolhido;
     }
 
-    public ItemPedido getSelectedItem() {
-        return selectedItem;
-    }
-
-    public void setSelectedItem(ItemPedido selectedItem) {
-        this.selectedItem = selectedItem;
-    }
-
-    public ItemPedido getItemP() {
-        return itemP;
-    }
-
-    public void setItemP(ItemPedido itemP) {
-        this.itemP = itemP;
-    }
+//    public ItemPedido getSelectedItem() {
+//        return selectedItem;
+//    }
+//
+//    public void setSelectedItem(ItemPedido selectedItem) {
+//        this.selectedItem = selectedItem;
+//    }
+//
+//    public ItemPedido getItemP() {
+//        return null;//itemP;
+//    }
+//
+//    public void setItemP(ItemPedido itemP) {
+//        //this.itemP = itemP;
+//    }
 
     public void setTotal() {
         this.total = 0;

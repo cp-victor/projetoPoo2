@@ -97,7 +97,7 @@ public class ProdutoMB {
         selectedProd = null;
     }
     
-    public ArrayList<Produto> getProdutos(){
+    public List<Produto> getProdutos(){
         return produtoService.getProduto();
     }
     
