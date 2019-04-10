@@ -6,9 +6,14 @@
 package servico;
 
 import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import modelo.Categoria;
 import modelo.Cliente;
-import modelo.ItemPedido;
+import modelo.Pedido;
 import modelo.Produto;
 
 /**
@@ -16,15 +21,18 @@ import modelo.Produto;
  * @author victo
  */
 public class Dados {
-    private static ArrayList<Cliente> LISTA_CLIENTES;
-    private static ArrayList<Produto> LISTA_PRODUTOS;
-    private static ArrayList<Categoria> LISTA_CATEGORIAS;
-    private static ArrayList<ItemPedido> LISTA_ITEMPEDIDOS;
+    private static List<Cliente> LISTA_CLIENTES;
+    private static List<Produto> LISTA_PRODUTOS;
+    private static List<Categoria> LISTA_CATEGORIAS;
+    private static List<Pedido> LISTA_ITEMPEDIDOS;
     private static int auxC;
     private static int contPed=0;
     private static int contCli=0;
     private static int cliFinal;
     private static int pedidoVer=0;
+    
+    private static EntityManagerFactory emf = 
+                    Persistence.createEntityManagerFactory("PrAula1610PU");
     
     
     private static void init(){
@@ -43,27 +51,35 @@ public class Dados {
         LISTA_ITEMPEDIDOS = new ArrayList();
     }
     
-    public static ArrayList<Cliente> getLISTA_CLIENTES() {
-        if(LISTA_CLIENTES == null)
-            init();
+    public static List<Cliente> getLISTA_CLIENTES() {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query query = em.createQuery("select cl from Cliente cl");
+        LISTA_CLIENTES = query.getResultList();
         return LISTA_CLIENTES;
     }
         
-    public static ArrayList<Produto> getLISTA_PRODUTOS() {
-        if(LISTA_PRODUTOS == null)
-            init2();
+    public static List<Produto> getLISTA_PRODUTOS() {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query query = em.createQuery("select p from Produto p");
+        LISTA_PRODUTOS = query.getResultList();
         return LISTA_PRODUTOS;
     }
     
-    public static ArrayList<Categoria> getLISTA_CATEGORIAS() {
-        if(LISTA_CATEGORIAS == null)
-            init3();
+    public static List<Categoria> getLISTA_CATEGORIAS() {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query query = em.createQuery("select c from Categoria c");
+        LISTA_CATEGORIAS = query.getResultList();
         return LISTA_CATEGORIAS;
     }
     
-    public static ArrayList<ItemPedido> getLISTA_ITEMPEDIDOS() {
-        if(LISTA_ITEMPEDIDOS == null)
-            init4();
+    public static List<Pedido> getLISTA_ITEMPEDIDOS() {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query query = em.createQuery("select pe from Pedido pe");
+        LISTA_ITEMPEDIDOS = query.getResultList();
         return LISTA_ITEMPEDIDOS;
     }
     

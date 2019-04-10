@@ -7,24 +7,26 @@ package servico;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import modelo.ItemPedido;
+import java.util.List;
+import modelo.Pedido;
 
 /**
  *
  * @author mateu
  */
 public class ItemPedidoService {
-    private ArrayList<ItemPedido> listaItem = Dados.getLISTA_ITEMPEDIDOS();
+    private List<Pedido> listaItem = Dados.getLISTA_ITEMPEDIDOS();
     
-    public ArrayList<ItemPedido> getItem(){
+    public List<Pedido> getItem(){
         return listaItem;
     }
 
-    public void salvar(ItemPedido p){
+    public void salvar(Pedido p){
+        
         listaItem.add(p);
     }
     
-    public void removerItem(ItemPedido p) {
+    public void removerItem(Pedido p) {
        listaItem.remove(p);
     }
     
