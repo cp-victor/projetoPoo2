@@ -5,20 +5,32 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 
 /**
  *
  * @author 171095
  */
-public class Cliente {
+
+@Entity
+public class Cliente implements Serializable{
+    @Id
     private int codigo;
+    
     private String nome;
     private String endereco;
     private String telefone;
     private int status;
     private double limite;
+    
+    @OneToMany(cascade = CascadeType.ALL)
     private ArrayList<Pedido> pedidos;
 
     public Cliente() {

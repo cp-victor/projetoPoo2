@@ -5,13 +5,22 @@
  */
 package modelo;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 /**
  *
  * @author victo
  */
-public class ItemPedido {
+@Entity
+public class ItemPedido implements Serializable{
+    @Id
     private int numero;
     private int quantidade;
+    
+    @OneToOne
     private Produto produto;
     
     public double totalItem(){

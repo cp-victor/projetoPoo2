@@ -1,15 +1,31 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
-/**
- *
- * @author victo
- */
-public class Categoria {
-    private String descricao;
+@Entity
+public class Categoria implements Serializable{
+    @Id
+    private int codigo;
+    private String descricao;    
     
-    private ArrayList<Produto> produtos = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    private ArrayList<Produto> produtos = new ArrayList<Produto>();
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
 
     public Categoria(){
     }

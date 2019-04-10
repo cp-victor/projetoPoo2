@@ -5,18 +5,36 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  *
  * @author victo
  */
-public class Pedido {
+@Entity
+public class Pedido implements Serializable{
+    @Id
     private long numero;
+    
+    @Temporal(TemporalType.TIMESTAMP)
     private Date data;
-    private ArrayList<ItemPedido> itens;
+    
+    @ManyToOne
     private Cliente cliente;
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    private ArrayList<ItemPedido> itens;
+    
     
     public Pedido(){
         itens = new ArrayList<>();
