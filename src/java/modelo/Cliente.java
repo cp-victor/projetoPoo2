@@ -9,6 +9,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
@@ -22,6 +25,7 @@ import javax.persistence.Transient;
 @Entity
 public class Cliente implements Serializable{
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int codigo;
     
     private String nome;
@@ -30,7 +34,7 @@ public class Cliente implements Serializable{
     private int status;
     private double limite;
     
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private ArrayList<Pedido> pedidos;
 
     public Cliente() {

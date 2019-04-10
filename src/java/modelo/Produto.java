@@ -6,9 +6,18 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -16,6 +25,10 @@ import javax.persistence.OneToOne;
  * @author victo
  */
 @Entity
+@DiscriminatorColumn(
+        name="coluna",
+        discriminatorType=DiscriminatorType.STRING,
+        length=20)
 public class Produto implements Serializable{
     @Id
     protected int codigo;
@@ -27,6 +40,14 @@ public class Produto implements Serializable{
     protected double preco;
     protected int moeda;
     protected double imposto;
+    
+    @ManyToMany
+    @JoinTable(
+            name = "TBL_ProdutoPedido",
+            joinColumns = @JoinColumn(name = "pedidos"),
+            inverseJoinColumns = @JoinColumn(name = "produtos")
+    )
+    protected Collection<Pedido> pedidos = new ArrayList<Pedido>(); 
     
     public Produto(){
         

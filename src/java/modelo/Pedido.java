@@ -7,10 +7,14 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -32,28 +36,27 @@ public class Pedido implements Serializable{
     @ManyToOne
     private Cliente cliente;
     
-    @OneToMany(cascade = CascadeType.ALL)
-    private ArrayList<ItemPedido> itens;
+    @ManyToMany(mappedBy = "pedidos")
+    private List<Produto> produtos = new ArrayList<Produto>();
     
     
     public Pedido(){
-        itens = new ArrayList<>();
     }
     
     public double totalPedido(){
-        int total = 0;
-        for(ItemPedido i: itens){
-            total += i.getQuantidade() * i.getProduto().preco;
-        }
-        return total;
+//        int total = 0;
+//        for(ItemPedido i: itens){
+//            total += i.getQuantidade() * i.getProduto().preco;
+//        }
+        return 0;
     }
     
     public double totalImposto(){
-        int total = 0;
-        for(ItemPedido i: itens){
-            total += i.getQuantidade() * i.getProduto().imposto;
-        }
-        return total;
+//        int total = 0;
+//        for(ItemPedido i: itens){
+//            total += i.getQuantidade() * i.getProduto().imposto;
+//        }
+          return 0;
     }
 
     public long getNumero() {
@@ -79,13 +82,18 @@ public class Pedido implements Serializable{
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+//public ArrayList<ItemPedido> getItens() {
+//       // return itens;
+//       return null;
+//    }
+//
+//    public void setItens(List<ItemPedido> itens) {
+//        //this.itens = itens;
+//    }
+//    
 
-    public ArrayList<ItemPedido> getItens() {
-        return itens;
-    }
-
-    public void setItens(ArrayList<ItemPedido> itens) {
-        this.itens = itens;
+    public void addProduto(Produto produtoEscolhido) {
+        this.produtos.add(produtoEscolhido);
     }
     
 }
