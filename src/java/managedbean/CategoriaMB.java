@@ -19,9 +19,10 @@ public class CategoriaMB {
     private CategoriaService servico = new CategoriaService();
     private Categoria cat = new Categoria();
     
-    public void salvar(){
+    public void salvar(){    
+        
         servico.salvar(cat);
-        cat = new Categoria();
+        cat = new Categoria();        
     }
     
     public ArrayList<Categoria> getCategorias(){
