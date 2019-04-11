@@ -6,20 +6,19 @@
 package modelo;
 
 import java.io.Serializable;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author victo
  */
 @Entity
+@Table(name = "PEX")
+@DiscriminatorColumn(name = "Expo")
 public class ProdutoExportacao extends Produto implements Serializable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int codigo;
+
     protected String destino;
 
     public ProdutoExportacao(){

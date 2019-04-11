@@ -40,7 +40,7 @@ public class Dados {
     }
     
     private static void init2(){
-        LISTA_PRODUTOS = new ArrayList();
+        LISTA_PRODUTOS = new ArrayList() ;
     }
     
     private static void init3(){

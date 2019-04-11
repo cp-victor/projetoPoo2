@@ -11,26 +11,27 @@ import java.util.Collection;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author victo
  */
 @Entity
+@Table(name = "Produto")
 @DiscriminatorColumn(
         name="coluna",
-        discriminatorType=DiscriminatorType.STRING,
-        length=20)
+        discriminatorType=DiscriminatorType.STRING)
 public class Produto implements Serializable{
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     protected int codigo;
     protected String nome;
     
@@ -41,6 +42,7 @@ public class Produto implements Serializable{
     protected int moeda;
     protected double imposto;
     
+ 
     @ManyToMany
     @JoinTable(
             name = "TBL_ProdutoPedido",

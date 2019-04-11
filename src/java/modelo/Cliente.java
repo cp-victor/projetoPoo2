@@ -14,7 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
+import javax.persistence.Table;
 
 
 /**
@@ -23,6 +23,7 @@ import javax.persistence.Transient;
  */
 
 @Entity
+@Table(name = "Cliente")
 public class Cliente implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

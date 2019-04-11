@@ -19,7 +19,7 @@ import servico.CategoriaService;
  */
 @ManagedBean(name="CategoriaMB")
 @SessionScoped
-public class CategoriaMB {
+public class CategoriaMB { 
     private CategoriaService servico = new CategoriaService();
     private Categoria cat = new Categoria();
     private EntityManagerFactory emf = 

@@ -24,7 +24,6 @@ public class CategoriaService {
     }
     
     public List<Categoria> getListaCategoria() {
-        
         return listaCate;
     }
 
