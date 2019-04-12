@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 
 /**
@@ -25,8 +26,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Cliente")
 public class Cliente implements Serializable{
+    @TableGenerator(
+        name = "increment",
+        allocationSize = 1,
+        initialValue = 1
+    )
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE,
+            generator = "increment")
     private int codigo;
     
     private String nome;

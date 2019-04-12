@@ -31,9 +31,10 @@ public class CategoriaService {
         EntityManager em = this.emf.createEntityManager();
         em.getTransaction().begin();
             em.persist(categoria);
+            em.flush();
         em.getTransaction().commit();
-        em.close();        
-        //listaCate.add(categoria);
+        em.close();      
+        listaCate = Dados.getLISTA_CATEGORIAS();
     }
     
     public Categoria getCategoriaByDescricao(String value) {
@@ -47,9 +48,14 @@ public class CategoriaService {
     public void remove(Categoria c){
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.flush();
-            em.remove(c);
+        Categoria current = null;
+        if(!em.contains(c)){
+            current = em.merge(c);
+        }
+            em.remove(current);
+            em.flush();
         em.getTransaction().commit();
         em.close();
+        listaCate = Dados.getLISTA_CATEGORIAS();
     }
 }

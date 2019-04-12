@@ -49,11 +49,13 @@
                 <p:column style="width:32px">
                     <p:rowEditor/>
                 </p:column>
-                <p:column>
+                <p:column style="width: 32px">
                     <p:commandButton icon="ui-icon-trash"
                         title="Delete this row"
                         actionListener="#{CategoriaMB.remove(c)}"
-                        ajax="false" />
+                        ajax="false" 
+                        update="formCat"
+                        />
                 </p:column>
             </p:dataTable>
             

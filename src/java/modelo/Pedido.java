@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -26,8 +27,14 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "Pedido")
 public class Pedido implements Serializable{
+    @TableGenerator(
+        name = "increment",
+        allocationSize = 1,
+        initialValue = 1
+    )
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE,
+            generator = "increment")
     private long numero;
     
     @Temporal(TemporalType.TIMESTAMP)

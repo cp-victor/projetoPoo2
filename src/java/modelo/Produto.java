@@ -19,6 +19,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 /**
  *
@@ -30,8 +31,14 @@ import javax.persistence.Table;
         name="coluna",
         discriminatorType=DiscriminatorType.STRING)
 public class Produto implements Serializable{
+    @TableGenerator(
+        name = "increment",
+        allocationSize = 1,
+        initialValue = 1
+    )
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE,
+            generator = "increment")
     protected int codigo;
     protected String nome;
     

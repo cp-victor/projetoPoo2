@@ -68,30 +68,6 @@ public class CategoriaMB {
             em.merge(cate);
         em.getTransaction().commit();
         em.close();
-
-//        EntityManager em = emf.createEntityManager();
-//        FacesMessage msg;
-//        if(this.categorias == null){
-//            msg = new FacesMessage("Falha na edição", ((Categoria) event.getObject()).getDescricao());
-//        }
-//        else{
-//            em.getTransaction().begin();
-//
-//                List<Categoria> tempCatList = this.categorias;
-//                for(Iterator<Categoria> it = tempCatList.iterator();it.hasNext();){
-//                    Categoria cate = it.next();
-//
-//                    em.persist(cate);
-//                    em.flush();
-//                    em.clear();
-//                }
-//
-//            em.getTransaction().commit();
-//            em.close();
-//            
-//            msg = new FacesMessage("Categoria Editada", ((Categoria) event.getObject()).getDescricao());
-//        }
-//        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     
     public void onRowCancel (RowEditEvent event){
