@@ -5,15 +5,12 @@
  */
 package pacoteMain;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import modelo.Categoria;
 import modelo.Cliente;
 import modelo.Pedido;
-import modelo.Produto;
 import modelo.ProdutoExportacao;
 import modelo.ProdutoMercadoInterno;
 
@@ -35,7 +32,6 @@ public class principal {
             Pedido p = new Pedido();
             ProdutoExportacao pe = new ProdutoExportacao();
             ProdutoMercadoInterno pmi = new ProdutoMercadoInterno();
-            Produto pr = new Produto();
             
             c1.setDescricao("Descricao" + i + "");
             
@@ -50,12 +46,10 @@ public class principal {
             pmi.setNome("Nome" + i + "");
             pmi.setIncentivo(true);
             
-            pr.setNome("Nome" + i + "");
             
             em.getTransaction().begin();
                 em.persist(pe);
                 em.persist(pmi);
-                em.persist(pr);
                 em.persist(c1);
                 em.persist(cl1);
                 em.persist(p);

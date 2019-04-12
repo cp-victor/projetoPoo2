@@ -42,6 +42,7 @@ public class ClienteMB {
             if(e.getCodigo() == aux){
                 servico.setAuxCli(aux);
                 itemPedidoMB.setTotal();
+                b = true;
                 return "itemped.xhtml";
             }
         }
