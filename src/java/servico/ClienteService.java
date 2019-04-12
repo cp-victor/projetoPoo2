@@ -31,6 +31,7 @@ public class ClienteService {
     }
     
     public List<Cliente> getClientes(){
+        this.listaCli = Dados.getLISTA_CLIENTES();
         return listaCli;
     }
     

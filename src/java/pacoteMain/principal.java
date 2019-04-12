@@ -5,6 +5,8 @@
  */
 package pacoteMain;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -41,9 +43,9 @@ public class principal {
             
             p.setCliente(cl1);
             
-           
             pe.setNome("Nome" + i + "");
             pe.setDestino("Destino" + i + "");
+            pe.setPedidos(p);
             
             pmi.setNome("Nome" + i + "");
             pmi.setIncentivo(true);

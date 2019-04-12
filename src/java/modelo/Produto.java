@@ -117,4 +117,12 @@ public class Produto implements Serializable{
     public void setImposto(double imposto) {
         this.imposto = imposto;
     }
+
+    public Collection<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(Pedido p) {
+        this.pedidos.add(p);
+    }
 }
