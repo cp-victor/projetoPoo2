@@ -18,7 +18,7 @@ public class Categoria implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int codigo;
-    private String descricao;    
+    private String descricao;
     
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private ArrayList<Produto> produtos = new ArrayList<Produto>();

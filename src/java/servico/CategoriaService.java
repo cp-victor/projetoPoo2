@@ -43,4 +43,13 @@ public class CategoriaService {
         }
         return null;
     }
+    
+    public void remove(Categoria c){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.flush();
+            em.remove(c);
+        em.getTransaction().commit();
+        em.close();
+    }
 }
