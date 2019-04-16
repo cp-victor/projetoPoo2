@@ -87,13 +87,13 @@ public class ProdutoMB {
         this.selectedProd = selectedProd;
     }
     
-    public void removeProduto(ProdutoExportacao prod){
-        produtoService.removerProduto(prod);
+    public void remove(Produto prod){
+        produtoService.remove(prod);
     }
     
     public void removeSelected(){
         selectedProd.getCategoria().removeProduto(selectedProd);
-        produtoService.removerProduto(selectedProd);
+        produtoService.remove(selectedProd);
         selectedProd = null;
     }
     

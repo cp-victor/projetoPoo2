@@ -27,7 +27,7 @@ public class ProdutoService {
         em.close();
     }
     
-    public void removerProduto(Produto p) {
+    public void remove(Produto p) {
        listaProd.remove(p);
     }
     

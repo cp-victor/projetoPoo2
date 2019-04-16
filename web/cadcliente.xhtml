@@ -12,10 +12,8 @@
         <h1>Cadastro Cliente</h1>
         
         
-        <h:form id="formFunc">
+        <h:form id="formCli">
             <p:panelGrid columns="2">
-                <p:outputLabel value="Codigo"/>
-                <p:inputText value="#{ClienteMB.cli.codigo}"/>
                 <p:outputLabel value="Nome:"/>
                 <p:inputText value="#{ClienteMB.cli.nome}"/>
                 <p:outputLabel value="Endereco:"/>
@@ -45,8 +43,8 @@
                          >
                 
                 
-                <p:ajax event="rowEdit" listener="#{ClienteMB.onRowEdit}" update=":formFunc:msgs" />
-                <p:ajax event="rowEditCancel" listener="#{ClienteMB.onRowCancel}" update=":formFunc:msgs" />
+                <p:ajax event="rowEdit" listener="#{ClienteMB.onRowEdit}" update=":formCli:msgs" />
+                <p:ajax event="rowEditCancel" listener="#{ClienteMB.onRowCancel}" update=":formCli:msgs" />
                 
                 <p:column filterBy="#{c.codigo}" headerText = "Matricula" filterMatchMode="contains">
                     <p:cellEditor>
@@ -60,25 +58,25 @@
                         <f:facet name="input"><p:inputText value="#{c.nome}" style="width:100%" label="nome"/></f:facet>                        
                     </p:cellEditor>         
                 </p:column>
-                <p:column filterBy="#{f.endereco}" headerText = "Endereco" filterMatchMode="contains">
+                <p:column filterBy="#{c.endereco}" headerText = "Endereco" filterMatchMode="contains">
                     <p:cellEditor>
                         <f:facet name="output"><p:outputLabel value="#{c.endereco}"/></f:facet>
                         <f:facet name="input"><p:inputText value="#{c.endereco}" style="width:100%" label="endereco"/></f:facet>
                     </p:cellEditor>
                 </p:column>
-                <p:column filterBy="#{f.telefone}" headerText = "Telefone" filterMatchMode="contains">
+                <p:column filterBy="#{c.telefone}" headerText = "Telefone" filterMatchMode="contains">
                     <p:cellEditor>
                         <f:facet name="output"><p:outputLabel value="#{c.telefone}"/></f:facet>
                         <f:facet name="input"><p:inputText value="#{c.telefone}" style="width:100%" label="telefone"/></f:facet>
                     </p:cellEditor>
                 </p:column>
-                <p:column filterBy="#{f.status}" headerText = "Status" filterMatchMode="contains">
+                <p:column filterBy="#{c.status}" headerText = "Status" filterMatchMode="contains">
                     <p:cellEditor>
                         <f:facet name="output"><p:outputLabel value="#{c.status}"/></f:facet>
                         <f:facet name="input"><p:inputText value="#{c.status}" style="width:100%" label="status"/></f:facet>
                     </p:cellEditor>
                 </p:column>
-                <p:column filterBy="#{f.limite}" headerText = "Limite" filterMatchMode="contains">
+                <p:column filterBy="#{c.limite}" headerText = "Limite" filterMatchMode="contains">
                     <p:cellEditor>
                         <f:facet name="output"><p:outputLabel value="#{c.limite}"/></f:facet>
                         <f:facet name="input"><p:inputText value="#{c.limite}" style="width:100%" label="limite"/></f:facet>
@@ -87,6 +85,14 @@
                 
                 <p:column style="width:32px">
                     <p:rowEditor/>
+                </p:column>
+                <p:column style="width: 32px">
+                    <p:commandButton icon="ui-icon-trash"
+                        title="Delete this row"
+                        actionListener="#{ClienteMB.remove(c)}"
+                        ajax="false" 
+                        update="formCat"
+                        />
                 </p:column>
             </p:dataTable>
             
