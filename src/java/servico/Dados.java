@@ -54,8 +54,10 @@ public class Dados {
     public static List<Cliente> getLISTA_CLIENTES() {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query query = em.createQuery("select cl from Cliente cl");
+        Query query;
+        query = em.createQuery("select cl from Cliente cl");
         LISTA_CLIENTES = query.getResultList();
+        
         return LISTA_CLIENTES;
     }
         
@@ -71,6 +73,7 @@ public class Dados {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         Query query = em.createQuery("select c from Categoria c");
+        //query.setMaxResults(5); //pagination
         LISTA_CATEGORIAS = query.getResultList();
         return LISTA_CATEGORIAS;
     }

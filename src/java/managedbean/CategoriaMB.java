@@ -50,24 +50,16 @@ public class CategoriaMB {
         this.cat = cat;
     }
     
-    @PostConstruct
-    public void init(){
-        this.emf = Persistence.createEntityManagerFactory("PrAula1610PU");
-    }
-    
     public void onRowEdit(RowEditEvent event) {
-        
-        System.out.println("Entrou no row edit");
-        FacesMessage msg = new FacesMessage("Categoria editada", ((Categoria) event.getObject()).getDescricao());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-//        
-        this.emf = Persistence.createEntityManagerFactory("PrAula1610PU");
         Categoria cate = ((Categoria) event.getObject());
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
             em.merge(cate);
         em.getTransaction().commit();
         em.close();
+        
+        FacesMessage msg = new FacesMessage("Categoria editada", ((Categoria) event.getObject()).getDescricao());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     
     public void onRowCancel (RowEditEvent event){

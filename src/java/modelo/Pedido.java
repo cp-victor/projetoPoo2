@@ -28,13 +28,13 @@ import javax.persistence.TemporalType;
 @Table(name = "Pedido")
 public class Pedido implements Serializable{
     @TableGenerator(
-        name = "increment",
+        name = "incrementPed",
         allocationSize = 1,
         initialValue = 1
     )
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE,
-            generator = "increment")
+            generator = "incrementPed")
     private long numero;
     
     @Temporal(TemporalType.TIMESTAMP)

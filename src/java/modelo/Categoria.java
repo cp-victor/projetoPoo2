@@ -17,13 +17,13 @@ import javax.persistence.TableGenerator;
 @Table(name = "Categoria")
 public class Categoria implements Serializable{
     @TableGenerator(
-        name = "increment",
+        name = "incrementCat",
         allocationSize = 1,
         initialValue = 1
     )
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE,
-            generator = "increment")
+            generator = "incrementCat")
     private int codigo;
     private String descricao;
     

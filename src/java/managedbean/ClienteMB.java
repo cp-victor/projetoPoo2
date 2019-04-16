@@ -11,6 +11,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import modelo.Cliente;
 import org.primefaces.event.RowEditEvent;
 import servico.ClienteService;
@@ -26,6 +29,7 @@ public class ClienteMB {
     private ClienteService servico = new ClienteService();
     private ItemPedidoService servicoItem = new ItemPedidoService();
     private Cliente cli = new Cliente();
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PrAula1610PU");
     private int aux;
     boolean b = true;
     
@@ -82,6 +86,13 @@ public class ClienteMB {
     
     
     public void onRowEdit(RowEditEvent event) {
+        Cliente cate = ((Cliente) event.getObject());
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+            em.merge(cate);
+        em.getTransaction().commit();
+        em.close();
+        
         FacesMessage msg = new FacesMessage("Funcionario Editado", ((Cliente) event.getObject()).getNome());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }

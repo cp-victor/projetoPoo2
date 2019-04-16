@@ -27,13 +27,13 @@ import javax.persistence.TableGenerator;
 @Table(name = "Cliente")
 public class Cliente implements Serializable{
     @TableGenerator(
-        name = "increment",
+        name = "incrementCli",
         allocationSize = 1,
         initialValue = 1
     )
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE,
-            generator = "increment")
+            generator = "incrementCli")
     private int codigo;
     
     private String nome;

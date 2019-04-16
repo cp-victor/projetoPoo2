@@ -32,13 +32,13 @@ import javax.persistence.TableGenerator;
         discriminatorType=DiscriminatorType.STRING)
 public class Produto implements Serializable{
     @TableGenerator(
-        name = "increment",
+        name = "incrementProd",
         allocationSize = 1,
         initialValue = 1
     )
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE,
-            generator = "increment")
+            generator = "incrementProd")
     protected int codigo;
     protected String nome;
     
@@ -60,10 +60,6 @@ public class Produto implements Serializable{
     
     public Produto(){
         
-    }
-    
-    public String getDestino(){
-        return "";
     }
     
     public boolean getIncentivo(){
