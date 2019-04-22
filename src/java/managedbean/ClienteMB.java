@@ -83,17 +83,19 @@ public class ClienteMB {
         return b;
     }
     
-    
+    public void remove(Cliente c){
+        servico.remove(c);
+    }
     
     public void onRowEdit(RowEditEvent event) {
-        Cliente cate = ((Cliente) event.getObject());
+        Cliente clie = ((Cliente) event.getObject());
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-            em.merge(cate);
+            em.merge(clie);
         em.getTransaction().commit();
         em.close();
         
-        FacesMessage msg = new FacesMessage("Funcionario Editado", ((Cliente) event.getObject()).getNome());
+        FacesMessage msg = new FacesMessage("Cliente Editado", ((Cliente) event.getObject()).getNome());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     

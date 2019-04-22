@@ -26,13 +26,22 @@ public class ClienteService {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
             em.persist(f);
+            em.flush();
         em.getTransaction().commit();
         em.close();      
     }
     
     public List<Cliente> getClientes(){
-        this.listaCli = Dados.getLISTA_CLIENTES();
+        listaCli = Dados.getLISTA_CLIENTES();
         return listaCli;
+    }
+    
+    public void remove(Cliente c){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+            em.remove(c);
+        em.getTransaction().commit();
+        em.close();
     }
     
     public void setAuxCli(int x){

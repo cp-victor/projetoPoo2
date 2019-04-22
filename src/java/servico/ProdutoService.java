@@ -23,11 +23,12 @@ public class ProdutoService {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
             em.persist(p);
+            em.flush();
         em.getTransaction().commit();
         em.close();
     }
     
-    public void removerProduto(Produto p) {
+    public void remove(Produto p) {
        listaProd.remove(p);
     }
     
