@@ -20,8 +20,6 @@
                     <f:selectItem itemLabel="Externo" itemValue="2"/>
                     <p:ajax update="formProd produtos"/>
                 </p:selectOneRadio>
-                <p:outputLabel value="Codigo:" rendered="#{!ProdutoMB.rendered()}"/>
-                <p:inputText value="#{ProdutoMB.prode.codigo}" rendered="#{!ProdutoMB.rendered()}"/>
                 <p:outputLabel value="Nome:" rendered="#{!ProdutoMB.rendered()}"/>
                 <p:inputText value="#{ProdutoMB.prode.nome}" rendered="#{!ProdutoMB.rendered()}"/>
                 <p:outputLabel value="Categorias:" rendered="#{!ProdutoMB.rendered()}"/>
@@ -38,8 +36,6 @@
                 <p:outputLabel value="Destino:" rendered="#{!ProdutoMB.rendered()}"/>
                 <p:inputText value="#{ProdutoMB.prode.destino}" rendered="#{!ProdutoMB.rendered()}"/>
                 
-                <p:outputLabel value="Codigo:" rendered="#{ProdutoMB.rendered()}"/>
-                <p:inputText value="#{ProdutoMB.prodi.codigo}" rendered="#{ProdutoMB.rendered()}"/>
                 <p:outputLabel value="Nome:" rendered="#{ProdutoMB.rendered()}"/>
                 <p:inputText value="#{ProdutoMB.prodi.nome}" rendered="#{ProdutoMB.rendered()}"/>
                 <p:outputLabel value="Categorias:" rendered="#{ProdutoMB.rendered()}"/>
@@ -65,8 +61,8 @@
             
             <p:growl id="msgs" showDetail="true"/>
             <p:dataTable id="produtos"
-                         var="c" value="#{ProdutoMB.produtos}"
-                         rowKey="#{c.codigo}"
+                         var="p" value="#{ProdutoMB.produtos}"
+                         rowKey="#{p.codigo}"
                          rows="5"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -78,58 +74,58 @@
                 <p:ajax event="rowEdit" listener="#{ProdutoMB.onRowEdit}" update=":formProd:msgs" />
                 <p:ajax event="rowEditCancel" listener="#{ProdutoMB.onRowCancel}" update=":formProd:msgs" />
                 
-                <p:column filterBy="#{c.codigo}" headerText = "Codigo" filterMatchMode="contains">
+                <p:column filterBy="#{p.codigo}" headerText = "Codigo" filterMatchMode="contains">
                     <p:cellEditor>
-                        <f:facet name="output"><p:outputLabel value="#{c.codigo}"/></f:facet>
-                        <f:facet name="input"><p:inputText value="#{c.codigo}" style="width:100%" label="codigo"/></f:facet>
+                        <f:facet name="output"><p:outputLabel value="#{p.codigo}"/></f:facet>
+                        <f:facet name="input"><p:inputText value="#{p.codigo}" style="width:100%" label="codigo"/></f:facet>
                     </p:cellEditor>
                 </p:column>
-                <p:column filterBy="#{c.nome}" headerText = "Nome" filterMatchMode="contains">
+                <p:column filterBy="#{p.nome}" headerText = "Nome" filterMatchMode="contains">
                     <p:cellEditor>
-                        <f:facet name="output"><p:outputLabel value="#{c.nome}"/></f:facet>
-                        <f:facet name="input"><p:inputText value="#{c.nome}" style="width:100%" label="nome"/></f:facet>                        
+                        <f:facet name="output"><p:outputLabel value="#{p.nome}"/></f:facet>
+                        <f:facet name="input"><p:inputText value="#{p.nome}" style="width:100%" label="nome"/></f:facet>                        
                     </p:cellEditor>         
                 </p:column>
-                <p:column filterBy="#{c.categoria}" headerText = "Categoria" filterMatchMode="contains">
+                <!--/*<p:column filterBy="#{p.categoria}" headerText = "Categoria" filterMatchMode="contains">
                     <p:cellEditor>
-                        <f:facet name="output"><p:outputLabel value="#{c.categoria.descricao}"/></f:facet>
+                        <f:facet name="output"><p:outputLabel value="#{p.categoria.descricao}"/></f:facet>
                         <f:facet name="input">
-                            <p:selectOneMenu value="#{c.categoria}" converter="converterCategoria" style="width:100%">
+                            <p:selectOneMenu value="#{p.categoria}" converter="converterCategoria" style="width:100%">
                                 <f:selectItems value="#{ProdutoExternoMB.categoriaEscolhida}" var="aux"
                                                itemValue="#{aux}" itemLabel="#{aux.descricao}"
                                                />
                             </p:selectOneMenu>
                         </f:facet>
                     </p:cellEditor>
-                </p:column>
-                <p:column filterBy="#{c.preco}" headerText = "Preco" filterMatchMode="contains">
+                </p:column>*/-->
+                <p:column filterBy="#{p.preco}" headerText = "Preco" filterMatchMode="contains">
                     <p:cellEditor>
-                        <f:facet name="output"><p:outputLabel value="#{c.preco}"/></f:facet>
-                        <f:facet name="input"><p:inputText value="#{c.preco}" style="width:100%" label="preco"/></f:facet>
+                        <f:facet name="output"><p:outputLabel value="#{p.preco}"/></f:facet>
+                        <f:facet name="input"><p:inputText value="#{p.preco}" style="width:100%" label="preco"/></f:facet>
                     </p:cellEditor>
                 </p:column>
-                <p:column filterBy="#{c.moeda}" headerText = "Moeda" filterMatchMode="contains">
+                <p:column filterBy="#{p.moeda}" headerText = "Moeda" filterMatchMode="contains">
                     <p:cellEditor>
-                        <f:facet name="output"><p:outputLabel value="#{c.moeda}"/></f:facet>
-                        <f:facet name="input"><p:inputText value="#{c.moeda}" style="width:100%" label="moeda"/></f:facet>
+                        <f:facet name="output"><p:outputLabel value="#{p.moeda}"/></f:facet>
+                        <f:facet name="input"><p:inputText value="#{p.moeda}" style="width:100%" label="moeda"/></f:facet>
                     </p:cellEditor>
                 </p:column>
-                <p:column filterBy="#{c.imposto}" headerText = "Imposto" filterMatchMode="contains">
+                <p:column filterBy="#{p.imposto}" headerText = "Imposto" filterMatchMode="contains">
                     <p:cellEditor>
-                        <f:facet name="output"><p:outputLabel value="#{c.imposto}"/></f:facet>
-                        <f:facet name="input"><p:inputText value="#{c.imposto}" style="width:100%" label="imposto"/></f:facet>
+                        <f:facet name="output"><p:outputLabel value="#{p.imposto}"/></f:facet>
+                        <f:facet name="input"><p:inputText value="#{p.imposto}" style="width:100%" label="imposto"/></f:facet>
                     </p:cellEditor>
                 </p:column>
-                <p:column filterBy="#{c.destino}" headerText = "Destino" filterMatchMode="contains">
+                <!--/*<p:column filterBy="#{p.destino}" headerText = "Destino" filterMatchMode="contains">
                     <p:cellEditor>
                         <f:facet name="output"><p:outputLabel value="#{c.destino}" rendered="#{ProdutoMB.compara(c.destino)}"/></f:facet>
                         <f:facet name="input"><p:inputText value="#{c.destino}" style="width:100%" label="destino"/></f:facet>
                     </p:cellEditor>
-                </p:column>
-                <p:column filterBy="#{c.incentivo}" headerText = "Incentivo" filterMatchMode="contains">
+                </p:column>*/-->
+                <p:column filterBy="#{p.incentivo}" headerText = "Incentivo" filterMatchMode="contains">
                     <p:cellEditor>
-                        <f:facet name="output"><p:outputLabel value="#{c.incentivo}" rendered="#{ProdutoMB.comparain(c.incentivo)}"/></f:facet>
-                        <f:facet name="input"><p:inputText value="#{c.incentivo}" style="width:100%" label="incentivo"/></f:facet>
+                        <f:facet name="output"><p:outputLabel value="Sim" style="display:block; text-align:center" rendered="#{ProdutoMB.comparain(p.incentivo)}"/></f:facet>
+                        <f:facet name="input"><p:inputText value="#{p.incentivo}" style="width:100%" label="incentivo"/></f:facet>
                     </p:cellEditor>
                 </p:column>
 

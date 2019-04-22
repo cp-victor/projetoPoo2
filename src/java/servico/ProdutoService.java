@@ -23,6 +23,7 @@ public class ProdutoService {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
             em.persist(p);
+            em.flush();
         em.getTransaction().commit();
         em.close();
     }
