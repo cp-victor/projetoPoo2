@@ -37,7 +37,7 @@ public class ItemPedidoMB {
     
     public void salvar(){
         if(produtoEscolhido != null){
-                itemP.addProduto(produtoEscolhido);
+                //itemP.addProduto(produtoEscolhido);
             }
             //this.total += produtoEscolhido.getPreco() * itemP.getQuantidade();
             

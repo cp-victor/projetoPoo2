@@ -42,7 +42,7 @@ public class Cliente implements Serializable{
     private int status;
     private double limite;
     
-    @OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany
     private ArrayList<Pedido> pedidos;
 
     public Cliente() {
