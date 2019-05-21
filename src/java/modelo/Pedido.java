@@ -43,9 +43,6 @@ public class Pedido implements Serializable{
     @ManyToOne
     private Cliente cliente;
     
-    @ManyToMany(mappedBy = "pedidos")
-    private List<Produto> produtos = new ArrayList<Produto>();
-    
     
     public Pedido(){
     }
@@ -99,8 +96,4 @@ public class Pedido implements Serializable{
 //    }
 //    
 
-    public void addProduto(Produto produtoEscolhido) {
-        this.produtos.add(produtoEscolhido);
-    }
-    
 }
