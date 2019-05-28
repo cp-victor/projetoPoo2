@@ -18,10 +18,10 @@ public class ConverterCategoria implements Converter{
 	
 	@Override
 	public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
-		
-		Categoria e=null;
-		if(value != null && !value.equals("")) {
-			e = servico.getCategoriaByDescricao(value);	
+		long v = Long.parseLong(value);
+		Categoria e = null;
+		if(v != 0) {
+			e = servico.getById(Categoria.class, v);	
 		}
 		return e;
 	}

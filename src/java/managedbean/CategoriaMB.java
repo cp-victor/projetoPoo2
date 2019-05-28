@@ -29,12 +29,12 @@ public class CategoriaMB {
             Persistence.createEntityManagerFactory("PrAula1610PU");
     
     public void salvar(){   
-        servico.salvar(cat);
+        servico.save(cat);
         this.cat = new Categoria();
     }
     
     public List<Categoria> getCategorias(){
-        this.categorias = servico.getListaCategoria();
+        this.categorias = servico.getAll(Categoria.class);
         return categorias;
     }
 

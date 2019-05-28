@@ -23,33 +23,14 @@ import servico.ProdutoService;
 public class ProdutoMB {
     private ProdutoService produtoService = new ProdutoService();
     private CategoriaService servicocat = new CategoriaService();
-    private ProdutoExportacao prode = new ProdutoExportacao();
+    private Produto prod = new Produto();
     private Categoria categoriaEscolhida;
     private ProdutoExportacao selectedProd;
     private ProdutoMercadoInterno prodi = new ProdutoMercadoInterno();
     private int radio;
     
     public void salvar(){
-        if(this.radio == 2){
-            if(categoriaEscolhida != null){
-                prode.setCategoria(categoriaEscolhida);
-                categoriaEscolhida.addProduto(prode);
-            }
-
-            produtoService.salvar(prode);
-            prode = new ProdutoExportacao();
-            categoriaEscolhida=null;
-        }
-        else{
-            if(categoriaEscolhida != null){
-                prodi.setCategoria(categoriaEscolhida);
-                categoriaEscolhida.addProduto(prodi);
-            }
-
-            produtoService.salvar(prodi);
-            prodi = new ProdutoMercadoInterno();
-            categoriaEscolhida=null;
-        }
+        produtoService.save(prod);
     }
     public boolean compara(String x){
         return !x.equals("");
@@ -72,7 +53,7 @@ public class ProdutoMB {
     }
     
     public List<Categoria> getCategorias(){
-      return servicocat.getListaCategoria();
+      return servicocat.getAll(Categoria.class);
     }
 
     public void setCategoriaEscolhida(Categoria categoriaEscolhida) {
@@ -98,7 +79,7 @@ public class ProdutoMB {
     }
     
     public List<Produto> getProdutos(){
-        return produtoService.getProduto();
+        return produtoService.getAll(Produto.class);
     }
     
     public int getRadio() {
@@ -109,8 +90,8 @@ public class ProdutoMB {
         this.radio = radio;
     }
     
-    public ProdutoExportacao getProde() {
-        return prode;
+    public Produto getProde() {
+        return prod;
     }
     
     public ProdutoMercadoInterno getProdi() {
@@ -118,7 +99,7 @@ public class ProdutoMB {
     }
 
     public void setProde(ProdutoExportacao prode) {
-        this.prode = prode;
+        this.prod = prode;
     }
     
     public void setProdi(ProdutoMercadoInterno prodi) {

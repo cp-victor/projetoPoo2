@@ -26,7 +26,7 @@ public class PedidokMB {
     private int aux2;
     
     private void init(){
-        for(Cliente c: clienteService.getClientes()){
+        for(Cliente c: clienteService.getAll(Cliente.class)){
             if(c.getCodigo() == Dados.getAuxC())
                 cli = c;
         }

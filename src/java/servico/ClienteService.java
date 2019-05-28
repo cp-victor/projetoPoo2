@@ -16,40 +16,7 @@ import modelo.Cliente;
  *
  * @author 171095
  */
-public class ClienteService {
-    private static List<Cliente> listaCli = Dados.getLISTA_CLIENTES();
-    private static int auxCli = Dados.getAuxC();
-    EntityManagerFactory emf = 
-            Persistence.createEntityManagerFactory("PrAula1610PU");
+public class ClienteService extends DAO<Cliente, Long>{
     
-    public void salvar(Cliente f){
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-            em.persist(f);
-            em.flush();
-        em.getTransaction().commit();
-        em.close();      
-    }
     
-    public List<Cliente> getClientes(){
-        listaCli = Dados.getLISTA_CLIENTES();
-        return listaCli;
-    }
-    
-    public void remove(Cliente c){
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-            em.remove(c);
-        em.getTransaction().commit();
-        em.close();
-    }
-    
-    public void setAuxCli(int x){
-        auxCli = x;
-        Dados.setAuxC(auxCli);
-    }
-    
-    public int getAuxCli(){
-        return auxCli;
-    }
 }

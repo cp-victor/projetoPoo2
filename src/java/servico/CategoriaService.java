@@ -16,46 +16,6 @@ import modelo.Categoria;
  *
  * @author victo
  */
-public class CategoriaService {
-    private static List<Categoria> listaCate = Dados.getLISTA_CATEGORIAS();
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PrAula1610PU");
+public class CategoriaService extends DAO<Categoria, Long> {
     
-    public CategoriaService(){
-    }
-    
-    public List<Categoria> getListaCategoria() {
-        return listaCate;
-    }
-
-    public void salvar(Categoria categoria){
-        EntityManager em = this.emf.createEntityManager();
-        em.getTransaction().begin();
-            em.persist(categoria);
-            em.flush();
-        em.getTransaction().commit();
-        em.close();      
-        listaCate = Dados.getLISTA_CATEGORIAS();
-    }
-    
-    public Categoria getCategoriaByDescricao(String value) {
-        for(Categoria e: listaCate){
-           if(e.getDescricao().equals(value))
-               return e;
-        }
-        return null;
-    }
-    
-    public void remove(Categoria c){
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        Categoria current = null;
-        if(!em.contains(c)){
-            current = em.merge(c);
-        }
-            em.remove(current);
-            em.flush();
-        em.getTransaction().commit();
-        em.close();
-        listaCate = Dados.getLISTA_CATEGORIAS();
-    }
 }

@@ -34,7 +34,7 @@ public class ClienteMB {
     boolean b = true;
     
     public void salvar(){
-        servico.salvar(cli);
+        servico.save(cli);
         cli = new Cliente();
     }
     
@@ -42,9 +42,8 @@ public class ClienteMB {
     private ItemPedidoMB itemPedidoMB;
 
     public String salvar2(){
-        for(Cliente e: servico.getClientes()){
+        for(Cliente e: servico.getAll(Cliente.class)){
             if(e.getCodigo() == aux){
-                servico.setAuxCli(aux);
                 itemPedidoMB.setTotal();
                 b = true;
                 return "itemped.xhtml";
@@ -64,7 +63,7 @@ public class ClienteMB {
     }
     
     public List<Cliente> getClientes(){
-        return servico.getClientes();
+        return servico.getAll(Cliente.class);
     }
 
     public Cliente getCli() {

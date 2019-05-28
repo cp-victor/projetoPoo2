@@ -10,8 +10,10 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import modelo.Cliente;
+import modelo.ItemPedido;
 import modelo.Pedido;
 import modelo.Produto;
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import servico.ClienteService;
 import servico.Dados;
 import servico.ItemPedidoService;
@@ -28,6 +30,7 @@ public class ItemPedidoMB {
     private ProdutoService produtoService = new ProdutoService();
     private ClienteService clienteService = new ClienteService();
     private List<Cliente> cli;
+    private List<ItemPedido> itens = new ArrayList();
     private Cliente clis;
     private Pedido ped;
     private Produto produtoEscolhido;
@@ -35,33 +38,11 @@ public class ItemPedidoMB {
     private Pedido itemP = new Pedido();
     private double total;
     
-    public void salvar(){
-        if(produtoEscolhido != null){
-                //itemP.addProduto(produtoEscolhido);
-            }
-            //this.total += produtoEscolhido.getPreco() * itemP.getQuantidade();
-            
-            itemService.salvar(itemP);
-            itemP = new Pedido();
-            produtoEscolhido=null;
+    public void salvar(){    
+        for (ItemPedido Item : itens) {
+            itemService.save(Item);
+        }
     }
-
-    public String finalizar(){
-//        ped = new Pedido();
-//        
-//        cli = clienteService.getClientes();
-//        ped.setNumero(Dados.getContPed(1));
-//        ped.setItens(itemService.getItem());
-//        ped.setCliente(Dados.getLISTA_CLIENTES().get(Dados.getCliFinal()));
-//        clis = ped.getCliente();
-//        clis.addPedido(ped);
-//        Dados.limpaLista();
-//        itemService = new ItemPedidoService();
-//        
-//        return "pedidok.xhtml";
-        return null;
-    }
-
     public double getTotal() {
         return total;
     }
@@ -69,17 +50,13 @@ public class ItemPedidoMB {
     public ItemPedidoService getItemService() {
         return itemService;
     }
-    
-//    public ArrayList<ItemPedido> getItens(){
-//        return null;//itemService.getItem();
-//    }
 
     public void setItemService(ItemPedidoService itemService) {
         this.itemService = itemService;
     }
 
     public List<Produto> getProdutos(){
-      return produtoService.getProduto();
+      return produtoService.getAll(Produto.class);
     }
     
     public ProdutoService getProdutoService() {
