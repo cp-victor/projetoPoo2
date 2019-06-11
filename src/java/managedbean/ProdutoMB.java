@@ -24,8 +24,9 @@ public class ProdutoMB {
     private ProdutoService produtoService = new ProdutoService();
     private CategoriaService servicocat = new CategoriaService();
     private Produto prod = new Produto();
+    private List<Produto> prods = new ArrayList<>();
     private Categoria categoriaEscolhida;
-    private ProdutoExportacao selectedProd;
+    private Produto selectedProd;
     private ProdutoExportacao prode = new ProdutoExportacao();
     private ProdutoMercadoInterno prodi = new ProdutoMercadoInterno();
     private int radio;
@@ -100,7 +101,8 @@ public class ProdutoMB {
     }
     
     public List<Produto> getProdutos(){
-        return produtoService.getAll(Produto.class);
+        this.prods = produtoService.getAll(Produto.class);
+        return prods;
     }
     
     public int getRadio() {
@@ -135,5 +137,6 @@ public class ProdutoMB {
     public void onRowCancel (RowEditEvent event){
         FacesMessage msg = new FacesMessage("Edição Cancelada",((Produto) event.getObject()).getNome());
         FacesContext.getCurrentInstance().addMessage(null,msg);
-    }
+    }    
+  
 }
