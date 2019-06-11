@@ -20,21 +20,11 @@
                 <p:inputText value="#{ClienteMB.cli.endereco}"/>
                 <p:outputLabel value="Telefone:"/>
                 <p:inputText value="#{ClienteMB.cli.telefone}"/>
-                <p:outputLabel for="radiobut" value="Status:" />
-                <p:selectOneRadio id="radiobut" value="#{ClienteMB.radioStat}">
-                    <f:selectItem itemLabel="Liberado"  itemValue="1"/>
-                    <f:selectItem itemLabel="Bloqueado" itemValue="2"/>
-                </p:selectOneRadio>
+                <p:outputLabel value="Status:"/>
+                <p:inputText value="#{ClienteMB.cli.status}"/>
                 <p:outputLabel value="Limite:"/>
                 <p:inputText value="#{ClienteMB.cli.limite}"/>
             </p:panelGrid>
-            <p:outputLabel value="Complete todos os campos!" 
-                           rendered="#{!ClienteMB.camposValidos}"/>
-            <br>
-                
-                
-                
-            </br> 
            
             <p:commandButton value="Salvar"
                              action="#{ClienteMB.salvar}"
@@ -80,9 +70,9 @@
                         <f:facet name="input"><p:inputText value="#{c.telefone}" style="width:100%" label="telefone"/></f:facet>
                     </p:cellEditor>
                 </p:column>
-                <p:column filterBy="#{c.auxStat}" headerText = "Status" filterMatchMode="contains">
+                <p:column filterBy="#{c.status}" headerText = "Status" filterMatchMode="contains">
                     <p:cellEditor>
-                        <f:facet name="output"><p:outputLabel value="#{ClienteMB.statusCliente(c)}"/></f:facet>
+                        <f:facet name="output"><p:outputLabel value="#{c.status}"/></f:facet>
                         <f:facet name="input"><p:inputText value="#{c.status}" style="width:100%" label="status"/></f:facet>
                     </p:cellEditor>
                 </p:column>

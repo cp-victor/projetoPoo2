@@ -1,5 +1,6 @@
 package managedbean.converter;
 
+import java.util.List;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -18,11 +19,12 @@ public class ConverterCategoria implements Converter{
 	
 	@Override
 	public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
-		long v = Long.parseLong(value);
-		Categoria e = null;
-		if(v != 0) {
-			e = servico.getById(Categoria.class, v);	
+		
+		Categoria e=null;
+		if(value != null && !value.equals("")) {
+			e = this.getByDescricao(value);	
 		}
+		
 		return e;
 	}
 
@@ -33,6 +35,18 @@ public class ConverterCategoria implements Converter{
 			return null;
 		} else {
 			return ((Categoria) categoria).getDescricao();
+
 		}
 	}
+        
+        private Categoria getByDescricao(String value){
+            List<Categoria> lista = servico.getAll(Categoria.class);
+            for(Categoria e: lista)
+            {
+               if(e.getDescricao().equals(value))
+                   return e;
+            }        
+            return null;
+            
+        }
 }
