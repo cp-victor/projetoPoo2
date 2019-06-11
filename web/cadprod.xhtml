@@ -20,9 +20,10 @@
                     <f:selectItem itemLabel="Externo" itemValue="2"/>
                     <p:ajax update="formProd produtos"/>
                 </p:selectOneRadio>
+                
                 <p:outputLabel value="Nome:" rendered="#{!ProdutoMB.rendered()}"/>
                 <p:inputText value="#{ProdutoMB.prode.nome}" rendered="#{!ProdutoMB.rendered()}"/>
-                <p:outputLabel value="Categorias:" rendered="#{!ProdutoMB.rendered()}"/>
+                <p:outputLabel value="Categoria:" rendered="#{!ProdutoMB.rendered()}"/>
                 <p:selectOneMenu value="#{ProdutoMB.categoriaEscolhida}" converter="converterCategoria" style="width:100%" rendered="#{!ProdutoMB.rendered()}">
                     <f:selectItems value="#{ProdutoMB.categorias}" var="aux"
                                    itemValue="#{aux}" itemLabel="#{aux.descricao}"/>
@@ -36,6 +37,8 @@
                 <p:outputLabel value="Destino:" rendered="#{!ProdutoMB.rendered()}"/>
                 <p:inputText value="#{ProdutoMB.prode.destino}" rendered="#{!ProdutoMB.rendered()}"/>
                 
+                
+                <!-- PRODUTO IMPORTAÇÃO LABELS -->
                 <p:outputLabel value="Nome:" rendered="#{ProdutoMB.rendered()}"/>
                 <p:inputText value="#{ProdutoMB.prodi.nome}" rendered="#{ProdutoMB.rendered()}"/>
                 <p:outputLabel value="Categorias:" rendered="#{ProdutoMB.rendered()}"/>

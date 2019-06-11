@@ -27,37 +27,10 @@ public class CategoriaMB {
     private Categoria cat = new Categoria();
     private EntityManagerFactory emf = 
             Persistence.createEntityManagerFactory("PrAula1610PU");
-    boolean vazia = false, existe = false;
-
-    public boolean isVazia() {
-        return vazia;
-    }
-
-    public void setVazia(boolean vazia) {
-        this.vazia = vazia;
-    }
-
-    public boolean isExiste() {
-        return existe;
-    }
-
-    public void setExiste(boolean existe) {
-        this.existe = existe;
-    }
     
     public void salvar(){
-        vazia = false;
-        existe = false;
-        if (!servico.verificaSeExiste(cat.getDescricao())){
-            if (cat.getDescricao() != ""){
-                servico.save(cat);
-                this.cat = new Categoria();
-            }
-            else
-                vazia = true;              
-        }                    
-        else
-            existe = true;
+        servico.save(cat);
+        this.cat = new Categoria();
     }
     
     public List<Categoria> getCategorias(){
