@@ -43,12 +43,8 @@ public class Pedido implements Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     private Date data;
     
-    @OneToMany(mappedBy = "pedido",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private ItemPedido item;
-    
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Cliente cliente;
-    
     
     public Pedido(){
     }

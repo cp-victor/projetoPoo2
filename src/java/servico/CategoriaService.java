@@ -5,11 +5,7 @@
  */
 package servico;
 
-import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import modelo.Categoria;
 
 /**
@@ -17,5 +13,20 @@ import modelo.Categoria;
  * @author victo
  */
 public class CategoriaService extends DAO<Categoria, Long> {
-    
+        Categoria cat = new Categoria();
+        
+        public boolean verificaSeExiste(String desc){
+            boolean ret = false;
+            List<Categoria> listaCat;
+            
+            listaCat = getAll(Categoria.class);
+            
+            for(Categoria c : listaCat)
+            {
+                if (c.getDescricao().toUpperCase().equals(desc.toUpperCase()))
+                    ret = true;                    
+            }
+            
+            return ret;
+        }
 }

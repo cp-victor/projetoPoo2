@@ -43,9 +43,6 @@ public class Produto implements Serializable{
     protected String nome;
     
     @ManyToOne
-    private ItemPedido item;
-    
-    @ManyToOne
     protected Categoria categoria;
     
     protected double preco;

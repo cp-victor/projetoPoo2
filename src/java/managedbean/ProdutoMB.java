@@ -26,12 +26,33 @@ public class ProdutoMB {
     private Produto prod = new Produto();
     private Categoria categoriaEscolhida;
     private ProdutoExportacao selectedProd;
+    private ProdutoExportacao prode;
     private ProdutoMercadoInterno prodi = new ProdutoMercadoInterno();
     private int radio;
     
     public void salvar(){
-        produtoService.save(prod);
+        if(this.radio == 2){
+            if(categoriaEscolhida != null){
+                prode.setCategoria(categoriaEscolhida);
+                categoriaEscolhida.addProduto(prode);
+            }
+
+            produtoService.save(prode);
+            prode = new ProdutoExportacao();
+            categoriaEscolhida=null;
+        }
+        else{
+            if(categoriaEscolhida != null){
+                prodi.setCategoria(categoriaEscolhida);
+                categoriaEscolhida.addProduto(prodi);
+            }
+
+            produtoService.save(prodi);
+            prodi = new ProdutoMercadoInterno();
+            categoriaEscolhida=null;
+        }
     }
+    
     public boolean compara(String x){
         return !x.equals("");
     }
@@ -91,7 +112,7 @@ public class ProdutoMB {
     }
     
     public Produto getProde() {
-        return prod;
+        return prode;
     }
     
     public ProdutoMercadoInterno getProdi() {
@@ -99,7 +120,7 @@ public class ProdutoMB {
     }
 
     public void setProde(ProdutoExportacao prode) {
-        this.prod = prode;
+        this.prode = prode;
     }
     
     public void setProdi(ProdutoMercadoInterno prodi) {

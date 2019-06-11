@@ -6,6 +6,7 @@
 package managedbean;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import modelo.Pedido;
@@ -17,9 +18,9 @@ import servico.Dados;
  */
 @ManagedBean(name="verItensMB")
 @SessionScoped
-public class verItensMB {
+public class VerItensMB {
     private int cli = Dados.getCliFinal();
-    private ArrayList<Pedido> listaPed = Dados.getLISTA_CLIENTES().get(cli).getPedidos();
+    private List<Pedido> listaPed = Dados.getLISTA_CLIENTES().get(cli).getPedidos();
     private Pedido auxped;
 
     public int getCli() {

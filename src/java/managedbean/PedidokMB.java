@@ -6,6 +6,7 @@
 package managedbean;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import modelo.Cliente;
@@ -39,7 +40,7 @@ public class PedidokMB {
         return this.cli.getNome();
     }
 
-    public ArrayList<Pedido> getClientePedidos(){
+    public List<Pedido> getClientePedidos(){
         init();
         return this.cli.getPedidos();
     }

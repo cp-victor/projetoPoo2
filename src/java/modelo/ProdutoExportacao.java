@@ -21,8 +21,7 @@ public class ProdutoExportacao extends Produto implements Serializable{
 
     protected String destino;
 
-    public ProdutoExportacao(){
-        
+    public ProdutoExportacao(){   
     }
     
     public String getDestino() {

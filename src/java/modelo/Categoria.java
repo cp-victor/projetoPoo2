@@ -27,6 +27,9 @@ public class Categoria implements Serializable{
     private int codigo;
     private String descricao;
     
+    public Categoria(){
+    }
+    
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private ArrayList<Produto> produtos = new ArrayList<Produto>();
 
@@ -37,13 +40,11 @@ public class Categoria implements Serializable{
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-
-    public Categoria(){
-    }
     
     public Categoria(String descricao){
         this.descricao = descricao;
     }
+    
     public String getDescricao() {
         return descricao;
     }
@@ -67,4 +68,6 @@ public class Categoria implements Serializable{
     public void removeProduto(Produto produto){
         produtos.remove(produto);
     }
+    
+    
 }
