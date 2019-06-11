@@ -18,21 +18,20 @@ public class ConverterCategoria implements Converter{
 	
 	@Override
 	public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
-		long v = Long.parseLong(value);
-		Categoria e = null;
-		if(v != 0) {
-			e = servico.getById(Categoria.class, v);	
-		}
-		return e;
+            Categoria e = null;
+            if(value != null) {
+                    e = servico.getByName(value);
+            }
+            return e;
 	}
 
 	@Override
 	public String getAsString(FacesContext fc, UIComponent uic,
 			Object categoria) {
-		if (categoria == null || categoria.equals("")) {
-			return null;
-		} else {
-			return ((Categoria) categoria).getDescricao();
-		}
+            if (categoria == null || categoria.equals("")) {
+                    return null;
+            } else {
+                    return ((Categoria) categoria).getDescricao();
+            }
 	}
 }

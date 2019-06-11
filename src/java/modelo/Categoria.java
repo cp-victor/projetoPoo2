@@ -68,6 +68,4 @@ public class Categoria implements Serializable{
     public void removeProduto(Produto produto){
         produtos.remove(produto);
     }
-    
-    
 }

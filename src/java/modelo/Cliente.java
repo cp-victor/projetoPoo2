@@ -8,14 +8,15 @@ package modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
-import javax.persistence.Transient;
 
 
 /**
@@ -39,7 +40,7 @@ public class Cliente implements Serializable{
     private String nome;
     private String endereco;
     private String telefone;
-    private boolean status;
+    private int status;
     private double limite;
     
     @OneToMany(mappedBy = "cliente")
@@ -81,11 +82,11 @@ public class Cliente implements Serializable{
         this.telefone = telefone;
     }
 
-    public boolean getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

@@ -5,6 +5,11 @@
  */
 package servico;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import modelo.Cliente;
 
 /**
@@ -12,17 +17,6 @@ import modelo.Cliente;
  * @author 171095
  */
 public class ClienteService extends DAO<Cliente, Long>{
-    public boolean validaCampos(Cliente c){
-        boolean ret = true;
-        
-        if (c.getEndereco().isEmpty() ||
-                c.getLimite() == 0    ||
-                c.getNome().isEmpty() ||
-                c.getTelefone().isEmpty())
-            ret = false;
-        
-        return ret;
-    }
-          
+    
     
 }

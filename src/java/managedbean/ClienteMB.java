@@ -32,40 +32,14 @@ public class ClienteMB {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PrAula1610PU");
     private int aux;
     boolean b = true;
-    private int radioStat;
-    boolean camposValidos = true;
+    
+    public void salvar(){
+        servico.save(cli);
+        cli = new Cliente();
+    }
     
     @ManagedProperty(value="#{ItemPedidoMB}")
     private ItemPedidoMB itemPedidoMB;
-
-    public boolean isCamposValidos() {
-        return camposValidos;
-    }
-
-    public void setCamposValidos(boolean camposValidos) {
-        this.camposValidos = camposValidos;
-    }
-
-    public int getRadioStat() {
-        return radioStat;
-    }
-
-    public void setRadioStat(int radioStat) {
-        this.radioStat = radioStat;
-    }   
-    
-    public void salvar(){
-        camposValidos = servico.validaCampos(cli);
-        if (camposValidos){
-            if (radioStat == 1)
-                cli.setStatus(true);
-            else
-                cli.setStatus(false);             
-        
-            servico.save(cli);
-            cli = new Cliente();
-        }        
-    }
 
     public String salvar2(){
         for(Cliente e: servico.getAll(Cliente.class)){
@@ -74,7 +48,8 @@ public class ClienteMB {
                 b = true;
                 return "itemped.xhtml";
             }
-        }        
+        }
+        
         b = false;
         return "logincli.xhtml";
     }
@@ -126,18 +101,6 @@ public class ClienteMB {
     public void onRowCancel (RowEditEvent event){
         FacesMessage msg = new FacesMessage("Edição Cancelada",((Cliente) event.getObject()).getNome());
         FacesContext.getCurrentInstance().addMessage(null,msg);
-    }
-    
-    public String statusCliente(Cliente c)
-    {
-        String ret;
-        
-        if (c.getStatus())
-            ret = "Liberado";
-        else
-            ret = "Bloqueado";
-                    
-        return ret;
     }
     
     
