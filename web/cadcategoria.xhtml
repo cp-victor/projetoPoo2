@@ -18,6 +18,16 @@
                 <p:outputLabel value="Descricao"/>
                 <p:inputText value="#{CategoriaMB.cat.descricao}"/>
             </p:panelGrid>
+            
+            <p:outputLabel value="Descrição não pode ser vazia!" 
+                           rendered="#{CategoriaMB.vazia}"/>
+            <p:outputLabel value="Ja existe uma categoria com esse nome!" 
+                           rendered="#{CategoriaMB.existe}"/>
+            <br>
+                
+                
+                
+            </br>     
            
             <p:commandButton value="Salvar"
                              action="#{CategoriaMB.salvar()}"

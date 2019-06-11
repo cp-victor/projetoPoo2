@@ -49,15 +49,6 @@ public class Produto implements Serializable{
     protected int moeda;
     protected double imposto;
     
- 
-    @ManyToMany
-    @JoinTable(
-            name = "TBL_ProdutoPedido",
-            joinColumns = @JoinColumn(name = "pedidos"),
-            inverseJoinColumns = @JoinColumn(name = "produtos")
-    )
-    protected Collection<Pedido> pedidos = new ArrayList<Pedido>(); 
-    
     public Produto(){
         
     }
@@ -112,13 +103,5 @@ public class Produto implements Serializable{
 
     public void setImposto(double imposto) {
         this.imposto = imposto;
-    }
-
-    public Collection<Pedido> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(Pedido p) {
-        this.pedidos.add(p);
     }
 }

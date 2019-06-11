@@ -8,29 +8,13 @@ package servico;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import modelo.ItemPedido;
 import modelo.Pedido;
 
 /**
  *
  * @author mateu
  */
-public class ItemPedidoService {
-    private List<Pedido> listaItem = Dados.getLISTA_ITEMPEDIDOS();
-    
-    public List<Pedido> getItem(){
-        return listaItem;
-    }
-
-    public void salvar(Pedido p){
-        
-        listaItem.add(p);
-    }
-    
-    public void removerItem(Pedido p) {
-       listaItem.remove(p);
-    }
-    
-    public void limpaLista(){
-        Dados.limpaLista();
-    }
+public class ItemPedidoService extends DAO<ItemPedido, Long>{
+  
 }

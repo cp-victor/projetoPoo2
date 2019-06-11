@@ -8,6 +8,7 @@
     <class>modelo.Produto</class>
     <class>modelo.ProdutoExportacao</class>
     <class>modelo.ProdutoMercadoInterno</class>
+    <class>modelo.ItemPedido</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/ProjetoDB"/>

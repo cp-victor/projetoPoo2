@@ -15,13 +15,14 @@ import servico.ProdutoService;
 public class ConverterProdutos implements Converter{
     
 	private ProdutoService servico = new ProdutoService();
-	
+        
 	@Override
 	public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
+		long v = Long.parseLong(value);
 		
-		Produto e=null;
-		if(value != null && !value.equals("")) {
-			e = servico.getProdutoByName(value);	
+                Produto e = null;
+		if(v != 0) {
+			e = servico.getById(Produto.class, v);
 		}
 		return e;
 	}

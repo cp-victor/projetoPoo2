@@ -37,11 +37,9 @@ public class principal {
             
             cl1.setNome("Nome" + i + "");
             
-            p.setCliente(cl1);
-            
             pe.setNome("Nome" + i + "");
             pe.setDestino("Destino" + i + "");
-            pe.setPedidos(p);
+           // pe.setPedidos(p);
             
             pmi.setNome("Nome" + i + "");
             pmi.setIncentivo(true);

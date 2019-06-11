@@ -7,15 +7,15 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import javax.persistence.CascadeType;
+import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.Transient;
 
 
 /**
@@ -39,14 +39,14 @@ public class Cliente implements Serializable{
     private String nome;
     private String endereco;
     private String telefone;
-    private int status;
+    private boolean status;
     private double limite;
     
-    @OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private ArrayList<Pedido> pedidos;
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos = new ArrayList<Pedido>();
 
     public Cliente() {
-        pedidos = new ArrayList<>();
+        //pedidos = new ArrayList<>();
     }
     
     public int getCodigo() {
@@ -81,11 +81,11 @@ public class Cliente implements Serializable{
         this.telefone = telefone;
     }
 
-    public int getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
@@ -97,7 +97,13 @@ public class Cliente implements Serializable{
         this.limite = limite;
     }
 
-    public ArrayList<Pedido> getPedidos() {
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+
+    
+    
+    public List<Pedido> getPedidos() {
         return pedidos;
     }
     

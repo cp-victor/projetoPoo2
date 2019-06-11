@@ -9,12 +9,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
@@ -40,12 +43,8 @@ public class Pedido implements Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     private Date data;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Cliente cliente;
-    
-    @ManyToMany(mappedBy = "pedidos")
-    private List<Produto> produtos = new ArrayList<Produto>();
-    
     
     public Pedido(){
     }
@@ -99,8 +98,4 @@ public class Pedido implements Serializable{
 //    }
 //    
 
-    public void addProduto(Produto produtoEscolhido) {
-        this.produtos.add(produtoEscolhido);
-    }
-    
 }

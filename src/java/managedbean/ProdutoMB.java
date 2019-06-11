@@ -23,9 +23,10 @@ import servico.ProdutoService;
 public class ProdutoMB {
     private ProdutoService produtoService = new ProdutoService();
     private CategoriaService servicocat = new CategoriaService();
-    private ProdutoExportacao prode = new ProdutoExportacao();
+    private Produto prod = new Produto();
     private Categoria categoriaEscolhida;
     private ProdutoExportacao selectedProd;
+    private ProdutoExportacao prode;
     private ProdutoMercadoInterno prodi = new ProdutoMercadoInterno();
     private int radio;
     
@@ -36,7 +37,7 @@ public class ProdutoMB {
                 categoriaEscolhida.addProduto(prode);
             }
 
-            produtoService.salvar(prode);
+            produtoService.save(prode);
             prode = new ProdutoExportacao();
             categoriaEscolhida=null;
         }
@@ -46,11 +47,12 @@ public class ProdutoMB {
                 categoriaEscolhida.addProduto(prodi);
             }
 
-            produtoService.salvar(prodi);
+            produtoService.save(prodi);
             prodi = new ProdutoMercadoInterno();
             categoriaEscolhida=null;
         }
     }
+    
     public boolean compara(String x){
         return !x.equals("");
     }
@@ -72,7 +74,7 @@ public class ProdutoMB {
     }
     
     public List<Categoria> getCategorias(){
-      return servicocat.getListaCategoria();
+      return servicocat.getAll(Categoria.class);
     }
 
     public void setCategoriaEscolhida(Categoria categoriaEscolhida) {
@@ -98,7 +100,7 @@ public class ProdutoMB {
     }
     
     public List<Produto> getProdutos(){
-        return produtoService.getProduto();
+        return produtoService.getAll(Produto.class);
     }
     
     public int getRadio() {
@@ -109,7 +111,7 @@ public class ProdutoMB {
         this.radio = radio;
     }
     
-    public ProdutoExportacao getProde() {
+    public Produto getProde() {
         return prode;
     }
     
