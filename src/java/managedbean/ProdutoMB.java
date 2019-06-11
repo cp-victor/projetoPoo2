@@ -26,7 +26,7 @@ public class ProdutoMB {
     private Produto prod = new Produto();
     private Categoria categoriaEscolhida;
     private ProdutoExportacao selectedProd;
-    private ProdutoExportacao prode;
+    private ProdutoExportacao prode = new ProdutoExportacao();
     private ProdutoMercadoInterno prodi = new ProdutoMercadoInterno();
     private int radio;
     
