@@ -1,15 +1,17 @@
 package servico;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import modelo.Produto;
 /**
  *
  * @author victo
  */
 public class ProdutoService extends DAO<Produto, Long>{
+    public boolean verificaCampos(Produto p){
+        boolean ret = true;
+        
+        if (p.getNome().isEmpty() || p.getPreco() == 0 || p.getMoeda() == 0)
+            ret = false;
+        return ret;
+    }
  
 }

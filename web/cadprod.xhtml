@@ -20,6 +20,7 @@
                     <f:selectItem itemLabel="Externo" itemValue="2"/>
                     <p:ajax update="formProd produtos"/>
                 </p:selectOneRadio>
+                
                 <p:outputLabel value="Nome:" rendered="#{!ProdutoMB.rendered()}"/>
                 <p:inputText value="#{ProdutoMB.prode.nome}" rendered="#{!ProdutoMB.rendered()}"/>
                 <p:outputLabel value="Categoria:" rendered="#{!ProdutoMB.rendered()}"/>
@@ -52,9 +53,15 @@
                 <p:outputLabel value="Imposto:" rendered="#{ProdutoMB.rendered()}"/>
                 <p:inputText value="#{ProdutoMB.prodi.imposto}" rendered="#{ProdutoMB.rendered()}"/>
                 <p:outputLabel value="Incentivo:" rendered="#{ProdutoMB.rendered()}"/>
-                <p:selectBooleanCheckbox value="#{ProdutoMB.prodi.incentivo}" rendered="#{ProdutoMB.rendered()}"/>
-                
+                <p:selectBooleanCheckbox value="#{ProdutoMB.prodi.incentivo}" rendered="#{ProdutoMB.rendered()}"/>                
             </p:panelGrid>
+            
+            <p:outputLabel value="#{ProdutoMB.errorMsg}" rendered="#{!ProdutoMB.camposValidos}"/>
+            <br>
+                
+                
+                
+            </br> 
            
             <p:commandButton value="Salvar"
                              action="#{ProdutoMB.salvar()}"
