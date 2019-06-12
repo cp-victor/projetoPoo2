@@ -5,7 +5,6 @@
  */
 package servico;
 
-import Utils.FuncInterface;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
