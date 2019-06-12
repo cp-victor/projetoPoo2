@@ -30,28 +30,63 @@ public class ProdutoMB {
     private ProdutoExportacao prode = new ProdutoExportacao();
     private ProdutoMercadoInterno prodi = new ProdutoMercadoInterno();
     private int radio;
+    public boolean camposValidos = true;
+    public String errorMsg;    
     
     public void salvar(){
-        if(this.radio == 2){
-            if(categoriaEscolhida != null){
-                prode.setCategoria(categoriaEscolhida);
-                categoriaEscolhida.addProduto(prode);
+        camposValidos = produtoService.verificaCampos(prod);
+        if (camposValidos){
+            if(this.radio == 2){                          
+                if (prode.getDestino().isEmpty()){
+                    errorMsg = "Destino deve ser preenchido!";
+                    camposValidos = false;
+                }
+                else{
+                    if(categoriaEscolhida != null){
+                        prode.setCategoria(categoriaEscolhida);
+                        categoriaEscolhida.addProduto(prode);
+                    } 
+                    produtoService.save(prode);
+                    prode = new ProdutoExportacao();
+                    categoriaEscolhida=null;
+                }
+                    
+                
             }
-
-            produtoService.save(prode);
-            prode = new ProdutoExportacao();
-            categoriaEscolhida=null;
-        }
-        else{
-            if(categoriaEscolhida != null){
-                prodi.setCategoria(categoriaEscolhida);
-                categoriaEscolhida.addProduto(prodi);
+            else if (this.radio == 1){
+                if(categoriaEscolhida != null){
+                    prodi.setCategoria(categoriaEscolhida);
+                    categoriaEscolhida.addProduto(prodi);
+                }
+                produtoService.save(prodi);
+                prodi = new ProdutoMercadoInterno();
+                categoriaEscolhida=null;
             }
-
-            produtoService.save(prodi);
-            prodi = new ProdutoMercadoInterno();
-            categoriaEscolhida=null;
+            else{
+                errorMsg = "Selecione um Tipo!";
+                camposValidos = false;
+            }
+                
         }
+        else
+            errorMsg = "Preencha todos os campos corretamente!";
+        
+    }
+    
+    public boolean isCamposValidos() {
+        return camposValidos;
+    }
+
+    public void setCamposValidos(boolean camposValidos) {
+        this.camposValidos = camposValidos;
+    }
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
     }
     
     public boolean compara(String x){
